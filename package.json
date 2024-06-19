@@ -1,0 +1,13 @@
+{
+  "name": "expense-hound",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start:frontend": "npm --prefix frontend run dev",
+    "start:backend": "cd backend && ./mvnw spring-boot:run",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

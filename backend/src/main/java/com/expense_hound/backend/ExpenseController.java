@@ -11,7 +11,7 @@ public class ExpenseController {
 
    @GetMapping("/")
    public String home() {
-      return "Welcome to ExpenseHound!";
+      return "Welcome to ExpenseHound (with Hot Reloading)!";
    }
 
    @GetMapping("/api/expenses")
