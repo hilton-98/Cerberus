@@ -10,13 +10,11 @@ import com.expense_hound.backend.repository.UserRepository;
 
 @Service
 public class UserService {
-   
-   @Autowired
-   private UserRepository userRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public List<User> getAllUsers() {
-         System.out.println("Hello world");
-         System.out.println(userRepository.findAll());
         return userRepository.findAll();
     }
 

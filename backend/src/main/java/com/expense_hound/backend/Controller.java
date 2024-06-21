@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expense_hound.backend.entity.User;
@@ -13,8 +15,8 @@ import com.expense_hound.backend.service.UserService;
 @RestController
 public class Controller {
 
-   @Autowired
-   private UserService userService;
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/")
 	public String home() {
@@ -31,13 +33,8 @@ public class Controller {
 		return userService.getAllUsers();
 	}
 
-	@GetMapping("/createUser")
-	public User createUser() {
-
-		User user = new User();
-		user.setId(0);
-		user.setName("hilton98");
-
+	@PostMapping("/createUser")
+	public User createUser(@RequestBody User user) {
 		return userService.saveUser(user);
 	}
 }

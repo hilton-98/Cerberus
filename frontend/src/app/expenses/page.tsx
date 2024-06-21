@@ -7,7 +7,7 @@ export default function Expenses() {
 
   const loadExpenses: () => Promise<void> = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/expenses');
+      const response = await fetch('http://localhost:8080/expenses');
       const responseJson = await response.json();
       setExpenses(responseJson);
     } catch (e) {
