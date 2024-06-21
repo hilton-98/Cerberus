@@ -5,6 +5,5 @@ import org.springframework.stereotype.Repository;
 
 import com.expense_hound.backend.entity.User;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+@Repository public interface UserRepository extends JpaRepository<User, Integer> {
 }

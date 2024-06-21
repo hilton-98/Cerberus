@@ -8,16 +8,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Users")
-public class User {
+@Table(name = "Users") public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id") private int id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "name") private String name;
 
     public User() {
     }
@@ -34,11 +31,7 @@ public class User {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    @Override public String toString() {
+        return "User{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 }

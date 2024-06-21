@@ -9,11 +9,9 @@ import org.springframework.stereotype.Service;
 import com.expense_hound.backend.entity.User;
 import com.expense_hound.backend.repository.UserRepository;
 
-@Service
-public class UserService {
+@Service public class UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
