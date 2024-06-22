@@ -1,8 +1,8 @@
-package com.expense_hound.backend.model.ErrorResponse;
+package com.expense_hound.backend.model.Response.ErrorResponse;
 
 import org.springframework.http.HttpStatus;
 
-import com.expense_hound.backend.model.IResponse;
+import com.expense_hound.backend.model.Response.IResponse;
 
 public class ErrorResponse implements IResponse {
 
