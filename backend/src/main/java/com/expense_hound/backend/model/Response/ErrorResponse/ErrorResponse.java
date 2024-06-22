@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 
 import com.expense_hound.backend.model.Response.IResponse;
 
+
 public class ErrorResponse implements IResponse {
 
 	private HttpStatus status;

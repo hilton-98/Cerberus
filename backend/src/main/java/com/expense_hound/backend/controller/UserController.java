@@ -20,6 +20,7 @@ import com.expense_hound.backend.model.Response.UserResponse.GetUserByIdResponse
 import com.expense_hound.backend.model.Response.UserResponse.GetUsersResponse;
 import com.expense_hound.backend.service.UserService;
 
+
 @RestController
 public class UserController {
 

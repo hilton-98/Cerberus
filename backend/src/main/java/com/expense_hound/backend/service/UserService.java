@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.expense_hound.backend.entity.User;
 import com.expense_hound.backend.repository.UserRepository;
 
+
 @Service
 public class UserService {
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.expense_hound.backend.model.Response.IResponse;
 import com.expense_hound.backend.model.Response.HomeResponse.HomeResponse;
 
+
 @RestController
 public class Controller {
 

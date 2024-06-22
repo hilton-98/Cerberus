@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "format:frontend": "npm run format --prefix frontend",
+    "format:backend": "cd backend && ./mvnw spotless:apply",
+    "format": "concurrently \"npm run format:frontend\" \"npm run format:backend\"",
     "start:frontend": "npm --prefix frontend run dev",
     "start:backend": "cd backend && ./mvnw spring-boot:run",
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
