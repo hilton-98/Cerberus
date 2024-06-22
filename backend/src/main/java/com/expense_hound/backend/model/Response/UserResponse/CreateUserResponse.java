@@ -1,8 +1,7 @@
-package com.expense_hound.backend.model.Response.UserResponse;
+package com.expense_hound.backend.model.response.userresponse;
 
 import com.expense_hound.backend.entity.User;
-import com.expense_hound.backend.model.Response.IResponse;
-
+import com.expense_hound.backend.model.response.IResponse;
 
 public class CreateUserResponse implements IResponse {
 

@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expense_hound.backend.entity.User;
-import com.expense_hound.backend.model.Response.IResponse;
-import com.expense_hound.backend.model.Response.ErrorResponse.NotFoundResponse;
-import com.expense_hound.backend.model.Response.UserResponse.CreateUserResponse;
-import com.expense_hound.backend.model.Response.UserResponse.GetUserByIdResponse;
-import com.expense_hound.backend.model.Response.UserResponse.GetUsersResponse;
+import com.expense_hound.backend.model.response.IResponse;
+import com.expense_hound.backend.model.response.errorresponse.NotFoundResponse;
+import com.expense_hound.backend.model.response.userresponse.CreateUserResponse;
+import com.expense_hound.backend.model.response.userresponse.GetUserByIdResponse;
+import com.expense_hound.backend.model.response.userresponse.GetUsersResponse;
 import com.expense_hound.backend.service.UserService;
-
 
 @RestController
 public class UserController {

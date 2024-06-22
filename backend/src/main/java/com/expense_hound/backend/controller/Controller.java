@@ -6,9 +6,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.expense_hound.backend.model.Response.IResponse;
-import com.expense_hound.backend.model.Response.HomeResponse.HomeResponse;
-
+import com.expense_hound.backend.model.response.IResponse;
+import com.expense_hound.backend.model.response.homeresponse.HomeResponse;
 
 @RestController
 public class Controller {
