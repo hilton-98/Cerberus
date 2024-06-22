@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expense_hound.backend.entity.User;
-import com.expense_hound.backend.model.ErrorResponse;
 import com.expense_hound.backend.model.IResponse;
+import com.expense_hound.backend.model.ErrorResponse.NotFoundResponse;
 import com.expense_hound.backend.model.UserResponse.CreateUserResponse;
 import com.expense_hound.backend.model.UserResponse.GetUserByIdResponse;
 import com.expense_hound.backend.model.UserResponse.GetUsersResponse;
@@ -38,7 +38,7 @@ public class UserController {
 
 		if (user.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body(new ErrorResponse(HttpStatus.NOT_FOUND, "User not found with id: " + id));
+					.body(new NotFoundResponse("User not found with id: " + id));
 		}
 
 		return ResponseEntity.ok(new GetUserByIdResponse(user.get()));
