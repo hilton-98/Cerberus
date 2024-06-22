@@ -1,4 +1,4 @@
-package com.expense_hound.backend;
+package com.expense_hound.backend.controller;
 
 import java.util.List;
 import java.util.Optional;
