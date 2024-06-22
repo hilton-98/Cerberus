@@ -5,11 +5,11 @@ import java.util.List;
 import com.expensehound.backend.entity.User;
 import com.expensehound.backend.model.response.IResponse;
 
-public class GetUsersResponse implements IResponse {
+public class UsersResponse implements IResponse {
 
 	private List<User> users;
 
-	public GetUsersResponse(List<User> users) {
+	public UsersResponse(List<User> users) {
 		this.users = users;
 	}
 

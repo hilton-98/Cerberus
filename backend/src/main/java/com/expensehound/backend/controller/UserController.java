@@ -15,9 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.expensehound.backend.entity.User;
 import com.expensehound.backend.model.response.IResponse;
 import com.expensehound.backend.model.response.error.NotFoundResponse;
-import com.expensehound.backend.model.response.user.CreateUserResponse;
-import com.expensehound.backend.model.response.user.GetUserByIdResponse;
-import com.expensehound.backend.model.response.user.GetUsersResponse;
+import com.expensehound.backend.model.response.user.UserResponse;
+import com.expensehound.backend.model.response.user.UsersResponse;
 import com.expensehound.backend.service.UserService;
 
 @RestController
@@ -29,7 +28,7 @@ public class UserController {
 	@GetMapping("/users")
 	public ResponseEntity<IResponse> getUsers() {
 		List<User> users = userService.getUsers();
-		return ResponseEntity.ok(new GetUsersResponse(users));
+		return ResponseEntity.ok(new UsersResponse(users));
 	}
 
 	@GetMapping("/user/{id}")
@@ -41,12 +40,12 @@ public class UserController {
 					.body(new NotFoundResponse("User not found with id: " + id));
 		}
 
-		return ResponseEntity.ok(new GetUserByIdResponse(user.get()));
+		return ResponseEntity.ok(new UserResponse(user.get()));
 	}
 
 	@PostMapping("/createUser")
 	public ResponseEntity<IResponse> createUser(@RequestBody User user) {
 		User newUser = userService.saveUser(user);
-		return ResponseEntity.ok(new CreateUserResponse(newUser));
+		return ResponseEntity.ok(new UserResponse(newUser));
 	}
 }
