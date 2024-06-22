@@ -1,4 +1,4 @@
-package com.expense_hound.backend.model.response.errorresponse;
+package com.expensehound.backend.model.response.error;
 
 import org.springframework.http.HttpStatus;
 

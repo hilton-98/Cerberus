@@ -1,4 +1,4 @@
-package com.expense_hound.backend.service;
+package com.expensehound.backend.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.expense_hound.backend.entity.User;
-import com.expense_hound.backend.repository.UserRepository;
+import com.expensehound.backend.entity.User;
+import com.expensehound.backend.repository.UserRepository;
 
 @Service
 public class UserService {

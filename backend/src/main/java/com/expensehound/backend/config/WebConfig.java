@@ -1,4 +1,4 @@
-package com.expense_hound.backend.config;
+package com.expensehound.backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

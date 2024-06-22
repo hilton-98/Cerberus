@@ -1,9 +1,9 @@
-package com.expense_hound.backend.model.response.userresponse;
+package com.expensehound.backend.model.response.user;
 
 import java.util.List;
 
-import com.expense_hound.backend.entity.User;
-import com.expense_hound.backend.model.response.IResponse;
+import com.expensehound.backend.entity.User;
+import com.expensehound.backend.model.response.IResponse;
 
 public class GetUsersResponse implements IResponse {
 

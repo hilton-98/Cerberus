@@ -1,4 +1,4 @@
-package com.expense_hound.backend.controller;
+package com.expensehound.backend.controller;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.expense_hound.backend.model.response.IResponse;
-import com.expense_hound.backend.model.response.homeresponse.HomeResponse;
+import com.expensehound.backend.model.response.IResponse;
+import com.expensehound.backend.model.response.home.HomeResponse;
 
 @RestController
 public class Controller {

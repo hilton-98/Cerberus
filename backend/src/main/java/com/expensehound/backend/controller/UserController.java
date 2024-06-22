@@ -1,4 +1,4 @@
-package com.expense_hound.backend.controller;
+package com.expensehound.backend.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.expense_hound.backend.entity.User;
-import com.expense_hound.backend.model.response.IResponse;
-import com.expense_hound.backend.model.response.errorresponse.NotFoundResponse;
-import com.expense_hound.backend.model.response.userresponse.CreateUserResponse;
-import com.expense_hound.backend.model.response.userresponse.GetUserByIdResponse;
-import com.expense_hound.backend.model.response.userresponse.GetUsersResponse;
-import com.expense_hound.backend.service.UserService;
+import com.expensehound.backend.entity.User;
+import com.expensehound.backend.model.response.IResponse;
+import com.expensehound.backend.model.response.error.NotFoundResponse;
+import com.expensehound.backend.model.response.user.CreateUserResponse;
+import com.expensehound.backend.model.response.user.GetUserByIdResponse;
+import com.expensehound.backend.model.response.user.GetUsersResponse;
+import com.expensehound.backend.service.UserService;
 
 @RestController
 public class UserController {

@@ -1,4 +1,4 @@
-package com.expense_hound.backend.entity;
+package com.expensehound.backend.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

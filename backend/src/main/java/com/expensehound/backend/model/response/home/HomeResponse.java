@@ -1,6 +1,6 @@
-package com.expense_hound.backend.model.response.homeresponse;
+package com.expensehound.backend.model.response.home;
 
-import com.expense_hound.backend.model.response.IResponse;
+import com.expensehound.backend.model.response.IResponse;
 
 public class HomeResponse implements IResponse {
 	private String message;
