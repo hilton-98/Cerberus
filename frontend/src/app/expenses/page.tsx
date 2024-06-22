@@ -1,9 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import styles from './expenses.module.scss';
 
 export default function Expenses() {
   const [expenses, setExpenses] = useState([]);
+
+  const phrases = {
+    header: 'Expenses',
+  };
 
   const loadExpenses: () => Promise<void> = async () => {
     try {
@@ -20,8 +25,8 @@ export default function Expenses() {
   }, []);
 
   return (
-    <div>
-      <h1>Expenses</h1>
+    <div className={styles['container']}>
+      <h1 className={styles['header']}>{phrases.header}</h1>
       <ul>
         {expenses.map((expense, index) => (
           <li key={index}>{expense}</li>
