@@ -5,15 +5,18 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "prettier --write .",
+    "format": "npm run format:prettier && npm run format:style",
+    "format:prettier": "prettier --write .",
     "format:check": "prettier --check .",
+    "format:style": "stylelint '**/*.{css,scss}' --fix",
     "lint": "next lint",
     "start": "next start"
   },
   "dependencies": {
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "stylelint": "^16.6.1"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -21,8 +24,12 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "postcss": "^8.4.38",
     "prettier": "^3.3.2",
     "sass": "^1.77.6",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-prettier": "^5.0.0",
     "typescript": "^5"
   }
 }
