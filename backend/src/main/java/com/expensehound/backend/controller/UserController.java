@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.expensehound.backend.entity.User;
 import com.expensehound.backend.model.response.IResponse;
 import com.expensehound.backend.model.response.error.NotFoundResponse;
+import com.expensehound.backend.model.response.success.SuccessResponse;
 import com.expensehound.backend.model.response.user.UserResponse;
 import com.expensehound.backend.model.response.user.UsersResponse;
 import com.expensehound.backend.service.UserService;
@@ -47,5 +49,11 @@ public class UserController {
 	public ResponseEntity<IResponse> createUser(@RequestBody User user) {
 		User newUser = userService.saveUser(user);
 		return ResponseEntity.ok(new UserResponse(newUser));
+	}
+
+	@DeleteMapping("/user/{id}")
+	public ResponseEntity<IResponse> deleteUser(@PathVariable Integer id) {
+		userService.deleteUser(id);
+		return ResponseEntity.ok(new SuccessResponse("User successfully deleted"));
 	}
 }

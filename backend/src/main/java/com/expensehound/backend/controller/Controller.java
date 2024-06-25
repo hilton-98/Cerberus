@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expensehound.backend.model.response.IResponse;
-import com.expensehound.backend.model.response.home.HomeResponse;
+import com.expensehound.backend.model.response.success.SuccessResponse;
 
 @RestController
 public class Controller {
 
 	@GetMapping("/")
 	public IResponse home() {
-		return new HomeResponse("Welcome to ExpenseHound!");
+		return new SuccessResponse("Welcome to ExpenseHound!");
 	}
 
 	@GetMapping("/expenses")

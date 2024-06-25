@@ -1,11 +1,11 @@
-package com.expensehound.backend.model.response.home;
+package com.expensehound.backend.model.response.success;
 
 import com.expensehound.backend.model.response.IResponse;
 
-public class HomeResponse implements IResponse {
+public class SuccessResponse implements IResponse {
 	private String message;
 
-	public HomeResponse(String message) {
+	public SuccessResponse(String message) {
 		this.message = message;
 	}
 
