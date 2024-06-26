@@ -24,16 +24,18 @@ import com.expensehound.backend.service.UserService;
 @RestController
 public class UserController {
 
+	private final String controllerUrl = "/user";
+
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/users")
+	@GetMapping(controllerUrl + "/users")
 	public ResponseEntity<IResponse> getUsers() {
 		List<User> users = userService.getUsers();
 		return ResponseEntity.ok(new UsersResponse(users));
 	}
 
-	@GetMapping("/user/{id}")
+	@GetMapping(controllerUrl + "/{id}")
 	public ResponseEntity<IResponse> getUserById(@PathVariable Integer id) {
 		Optional<User> user = userService.getUserById(id);
 
@@ -45,13 +47,13 @@ public class UserController {
 		return ResponseEntity.ok(new UserResponse(user.get()));
 	}
 
-	@PostMapping("/createUser")
+	@PostMapping(controllerUrl + "/createUser")
 	public ResponseEntity<IResponse> createUser(@RequestBody User user) {
 		User newUser = userService.saveUser(user);
 		return ResponseEntity.ok(new UserResponse(newUser));
 	}
 
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping(controllerUrl + "/{id}")
 	public ResponseEntity<IResponse> deleteUser(@PathVariable Integer id) {
 		userService.deleteUser(id);
 		return ResponseEntity.ok(new SuccessResponse("User successfully deleted"));

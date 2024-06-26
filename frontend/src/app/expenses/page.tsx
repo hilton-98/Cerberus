@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import styles from './expenses.module.scss';
+import { Container } from '@/utils/lib/typedi/container';
+import { ExpenseService } from '@/model/expenseService';
 
 export default function Expenses() {
   const [expenses, setExpenses] = useState([]);
@@ -12,9 +14,8 @@ export default function Expenses() {
 
   const loadExpenses: () => Promise<void> = async () => {
     try {
-      const response = await fetch('http://localhost:8080/expenses');
-      const responseJson = await response.json();
-      setExpenses(responseJson);
+      const expenseService = Container.get(ExpenseService);
+      setExpenses(await expenseService.getExpenses());
     } catch (e) {
       console.log(e);
     }

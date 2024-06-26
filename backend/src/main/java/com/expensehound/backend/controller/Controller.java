@@ -17,7 +17,7 @@ public class Controller {
 		return new SuccessResponse("Welcome to ExpenseHound!");
 	}
 
-	@GetMapping("/expenses")
+	@GetMapping("/expenses/expenses")
 	public List<String> getExpenses() {
 		return Arrays.asList("Expense1", "Expense2", "Expense3");
 	}
