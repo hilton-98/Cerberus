@@ -1,4 +1,4 @@
-package com.expense_hound.backend.service;
+package com.expensehound.backend.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -7,22 +7,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import com.expensehound.backend.Application;
 import com.expensehound.backend.entity.User;
 import com.expensehound.backend.repository.UserRepository;
-import com.expensehound.backend.service.UserService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
 @ActiveProfiles("test")
-@SpringBootTest(classes = Application.class)
-@Transactional
+@DataJpaTest
+@Import(UserService.class)
 class UserServiceTest {
+
+	private final String TEST_ID_DNE = "some-rando-id";
+	private final String TEST_NAME = "Tanner Pearson";
 
 	@Autowired
 	private UserRepository userRepository;
@@ -37,8 +38,7 @@ class UserServiceTest {
 	@Test
 	void testGetUserById_Success() {
 
-		String name = "Tanner Pearson";
-		User user = new User(name);
+		User user = new User(TEST_NAME);
 
 		User saveUserResult = userService.saveUser(user);
 		assertEquals(user, saveUserResult);
@@ -49,16 +49,14 @@ class UserServiceTest {
 	@Test
 	void testGetUserById_Failure() {
 
-		String id = "some-rando-id";
-		Optional<User> optionalUser = userService.getUserById(id);
+		Optional<User> optionalUser = userService.getUserById(TEST_ID_DNE);
 		assertEquals(true, optionalUser.isEmpty());
 		assertThrows(NoSuchElementException.class, () -> optionalUser.get());
 	}
 
 	@Test
 	void testDeleteUser_Success() {
-		String name = "Tanner Pearson";
-		User user = new User(name);
+		User user = new User(TEST_NAME);
 
 		User saveUserResult = userService.saveUser(user);
 		assertEquals(user, saveUserResult);
