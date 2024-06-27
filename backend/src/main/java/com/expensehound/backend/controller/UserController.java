@@ -37,7 +37,7 @@ public class UserController {
 	}
 
 	@GetMapping(controllerUrl + "/{id}")
-	public ResponseEntity<IResponse> getUserById(@PathVariable Integer id) {
+	public ResponseEntity<IResponse> getUserById(@PathVariable String id) {
 		Optional<User> user = userService.getUserById(id);
 
 		if (user.isEmpty()) {
@@ -55,7 +55,7 @@ public class UserController {
 	}
 
 	@PutMapping(controllerUrl + "/{id}")
-	public ResponseEntity<IResponse> updateUser(@PathVariable Integer id, @RequestBody User newUser) {
+	public ResponseEntity<IResponse> updateUser(@PathVariable String id, @RequestBody User newUser) {
 		Optional<User> user = userService.getUserById(id);
 
 		if (user.isEmpty()) {
@@ -72,7 +72,7 @@ public class UserController {
 	}
 
 	@DeleteMapping(controllerUrl + "/{id}")
-	public ResponseEntity<IResponse> deleteUser(@PathVariable Integer id) {
+	public ResponseEntity<IResponse> deleteUser(@PathVariable String id) {
 		userService.deleteUser(id);
 		return ResponseEntity.ok(new SuccessResponse("User successfully deleted"));
 	}

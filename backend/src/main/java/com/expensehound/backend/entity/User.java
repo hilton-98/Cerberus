@@ -12,9 +12,9 @@ import jakarta.persistence.Table;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.UUID)
 	@Column(name = "id")
-	private int id;
+	private String id;
 
 	@Column(name = "name")
 	private String name;
@@ -26,7 +26,7 @@ public class User {
 		this.name = name;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
