@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,6 +52,23 @@ public class UserController {
 	public ResponseEntity<IResponse> createUser(@RequestBody User user) {
 		User newUser = userService.saveUser(user);
 		return ResponseEntity.ok(new UserResponse(newUser));
+	}
+
+	@PutMapping(controllerUrl + "/{id}")
+	public ResponseEntity<IResponse> updateUser(@PathVariable Integer id, @RequestBody User newUser) {
+		Optional<User> user = userService.getUserById(id);
+
+		if (user.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body(new NotFoundResponse("User not found with id: " + id));
+		}
+
+		User updatedUser = user.get();
+		updatedUser.setName(newUser.getName());
+
+		userService.saveUser(updatedUser);
+
+		return ResponseEntity.ok(new UserResponse(updatedUser));
 	}
 
 	@DeleteMapping(controllerUrl + "/{id}")
