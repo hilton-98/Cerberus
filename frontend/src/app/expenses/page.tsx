@@ -5,12 +5,12 @@ import styles from './expenses.module.scss';
 import { Container } from '@/utils/lib/typedi/container';
 import { ExpenseService } from '@/model/expenseService';
 
+const phrases = {
+  header: 'Expenses',
+} as const;
+
 export default function Expenses() {
   const [expenses, setExpenses] = useState([]);
-
-  const phrases = {
-    header: 'Expenses',
-  };
 
   const loadExpenses: () => Promise<void> = async () => {
     try {

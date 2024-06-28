@@ -1,0 +1,21 @@
+.container {
+  align-items: center;
+  border-bottom: 4px solid white;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  min-height: 64px;
+  padding: 0 32px;
+}
+
+.link {
+  color: white;
+  font-weight: bold;
+  text-decoration-line: none;
+  text-transform: uppercase;
+}
+
+.links {
+  display: flex;
+  gap: 16px;
+}

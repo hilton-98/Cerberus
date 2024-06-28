@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { Header } from '@/react/components/header/header';
+import { Header } from '@/react/components/core/header/header';
 
 const inter = Inter({ subsets: ['latin'] });
 

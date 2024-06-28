@@ -14,6 +14,9 @@
     "test": "echo \"This is a placeholder for the test script\""
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.7.2",
     "next": "14.2.4",
     "react": "^18",

@@ -4,7 +4,7 @@ import { Service } from 'typedi';
 
 @Service()
 export class UserService {
-  private serviceUrl = `${this.server.baseUrl}/user`;
+  private readonly serviceUrl = `${this.server.baseUrl}/user`;
 
   constructor(private readonly server: Server) {}
 
