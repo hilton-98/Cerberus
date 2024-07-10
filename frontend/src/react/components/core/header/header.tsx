@@ -19,6 +19,7 @@ interface LinkInfo {
 
 const phrases = {
   homePageLabel: 'Expense Hound',
+  loginPageLabel: 'Login',
   expensesLabel: 'Expenses',
 } as const;
 
@@ -30,6 +31,11 @@ const links: LinkInfo[] = [
   },
   {
     id: 1,
+    label: phrases.loginPageLabel,
+    route: routeManager.getRoute(RouteType.Login),
+  },
+  {
+    id: 2,
     label: phrases.expensesLabel,
     route: routeManager.getRoute(RouteType.Expenses),
   },
