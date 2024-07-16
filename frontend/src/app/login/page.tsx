@@ -6,14 +6,14 @@ import styles from './login.module.scss';
 const cssStyles = {
   container: styles['container'],
   inputContainer: styles['input-container'],
-};
+} as const;
 
 const phrases = {
   passwordLabel: 'Password:',
   submitButton: 'Submit',
   title: 'Login',
   usernameLabel: 'Username:',
-};
+} as const;
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -24,7 +24,7 @@ export default function Login() {
       username,
       password,
     });
-  }
+  };
 
   return (
     <div className={cssStyles.container}>
@@ -43,9 +43,7 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <button onClick={onSubmit} >
-        {phrases.submitButton}
-      </button>
+      <button onClick={onSubmit}>{phrases.submitButton}</button>
     </div>
   );
 }

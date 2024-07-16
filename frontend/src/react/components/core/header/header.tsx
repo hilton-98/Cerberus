@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { Container } from '@/ts/lib/typedi/container';
-import { RouteManager } from '@/ts/lib/core/routeManager';
-import { RouteType } from '@/ts/lib/core/routeType';
+import { RouteManager } from '@/ts/route/routeManager';
+import { RouteType } from '@/ts/route/routeType';
 
 const routeManager = Container.get(RouteManager);
 
