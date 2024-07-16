@@ -22,6 +22,7 @@ export default function Expenses() {
   };
 
   useEffect(() => {
+    console.log('Loading expenses');
     loadExpenses();
   }, []);
 
