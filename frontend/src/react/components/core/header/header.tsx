@@ -5,9 +5,9 @@ import styles from './header.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { Container } from '@/utils/lib/typedi/container';
-import { RouteManager } from '@/react/core/routeManager';
-import { RouteType } from '@/react/core/routeType';
+import { Container } from '@/ts/lib/typedi/container';
+import { RouteManager } from '@/ts/lib/core/routeManager';
+import { RouteType } from '@/ts/lib/core/routeType';
 
 const routeManager = Container.get(RouteManager);
 
