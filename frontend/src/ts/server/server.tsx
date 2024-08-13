@@ -3,7 +3,7 @@ import { Service } from 'typedi';
 
 @Service()
 export class Server {
-  public readonly baseUrl: string = 'http://localhost:8080';
+  public readonly baseUrl: string = process.env.NEXT_PUBLIC_SERVER_URL ?? '';
 
   public async get(url: string) {
     const response = await axios.get(url);
