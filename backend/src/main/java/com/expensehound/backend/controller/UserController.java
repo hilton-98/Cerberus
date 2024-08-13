@@ -64,7 +64,7 @@ public class UserController {
 		}
 
 		User updatedUser = user.get();
-		updatedUser.setName(newUser.getName());
+		updatedUser.setUsername(newUser.getUsername());
 		userService.saveUser(updatedUser);
 
 		return ResponseEntity.ok(new UserResponse(updatedUser));
