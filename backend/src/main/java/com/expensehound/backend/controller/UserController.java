@@ -49,13 +49,15 @@ public class UserController {
 		return ResponseEntity.ok(new UserResponse(user.get()));
 	}
 
-	@PostMapping(path = controllerUrl + "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = controllerUrl
+			+ "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<IResponse> createUser(@RequestBody User user) {
 		User newUser = userService.saveUser(user);
 		return ResponseEntity.ok(new UserResponse(newUser));
 	}
 
-	@PutMapping(path = controllerUrl + "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = controllerUrl
+			+ "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<IResponse> updateUser(@PathVariable String id, @RequestBody User newUser) {
 		Optional<User> user = userService.getUserById(id);
 

@@ -1,49 +1,7 @@
-'use client';
+import { LoginComponent } from "@/react/login/login";
 
-import { useState } from 'react';
-import styles from './login.module.scss';
-
-const cssStyles = {
-  container: styles['container'],
-  inputContainer: styles['input-container'],
-} as const;
-
-const phrases = {
-  passwordLabel: 'Password:',
-  submitButton: 'Submit',
-  title: 'Login',
-  usernameLabel: 'Username:',
-} as const;
-
-export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onSubmit = () => {
-    console.log({
-      username,
-      password,
-    });
-  };
-
+export default function LoginPage() {
   return (
-    <div className={cssStyles.container}>
-      {phrases.title}
-      <label className={cssStyles.inputContainer}>
-        {phrases.usernameLabel}
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </label>
-      <label className={cssStyles.inputContainer}>
-        {phrases.passwordLabel}
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
-      <button onClick={onSubmit}>{phrases.submitButton}</button>
-    </div>
+    <LoginComponent />
   );
 }
