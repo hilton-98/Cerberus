@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['stylelint-config-standard-scss', 'stylelint-prettier/recommended'],
-  plugins: ['stylelint-order', './customPlugins/stylelintExpenseHound'],
+  plugins: ['stylelint-order', './customPlugins/stylelint'],
   rules: {
     'prettier/prettier': true,
     'order/order': ['custom-properties', 'declarations'],
