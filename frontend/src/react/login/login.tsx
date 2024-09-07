@@ -7,7 +7,7 @@ import { LoginInputComponent } from './loginInput/loginInput';
 
 import welcomeBackgroundImage from '@/assets/images/welcome-background.jpg';
 
-const cssStyles = {
+const css = {
   container: styles['container'],
   infoGroup: styles['info-group'],
   loginGrid: styles['login-grid'],
@@ -35,10 +35,10 @@ export function LoginComponent() {
   };
 
   return (
-    <div className={cssStyles.container}>
-      <div className={cssStyles.loginGrid}>
-        <div className={cssStyles.loginGroup}>
-          <div className={cssStyles.title}>{phrases.title}</div>
+    <div className={css.container}>
+      <div className={css.loginGrid}>
+        <div className={css.loginGroup}>
+          <div className={css.title}>{phrases.title}</div>
           <Stack>
             <LoginInputComponent
               onChange={(e) => setUsername(e.target.value)}
@@ -52,7 +52,7 @@ export function LoginComponent() {
           <Button onClick={onSubmit}>{phrases.submitButton}</Button>
         </div>
         <div
-          className={cssStyles.infoGroup}
+          className={css.infoGroup}
           style={{
             backgroundImage: `url(${welcomeBackgroundImage.src})`,
           }}

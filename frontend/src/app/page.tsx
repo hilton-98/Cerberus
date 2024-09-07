@@ -1,3 +1,5 @@
-export default function HomePage() {
-  return <main>Welcome to ExpenseHound!</main>;
+import { HomeComponent } from "@/react/home/home";
+
+export default function Page() {
+  return <HomeComponent />;
 }

@@ -5,7 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 import { Header } from '@/react/core/header/header';
 
-const globalStyles = {
+const css = {
   app: 'app',
 } as const;
 
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: phrases.appTitle,
 };
 
-export default function RootLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ChakraProvider>
-          <div className={globalStyles.app}>
+          <div className={css.app}>
             <Header />
             {children}
           </div>

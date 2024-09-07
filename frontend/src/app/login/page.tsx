@@ -1,5 +1,5 @@
 import { LoginComponent } from '@/react/login/login';
 
-export default function LoginPage() {
+export default function Page() {
   return <LoginComponent />;
 }

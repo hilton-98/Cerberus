@@ -6,12 +6,17 @@ interface Props {
   placeholder: string;
 }
 
+const styles = {
+  black: 'black',
+  white: 'white',
+} as const;
+
 export function LoginInputComponent({ onChange, placeholder }: Props) {
   return (
     <Input
-      backgroundColor={'white'}
-      color={'black'}
-      focusBorderColor={'black'}
+      backgroundColor={styles.white}
+      color={styles.black}
+      focusBorderColor={styles.black}
       onChange={onChange}
       placeholder={placeholder}
     />

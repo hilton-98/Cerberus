@@ -1,5 +1,5 @@
-import { Expenses } from '@/react/expenses/expenses';
+import { ExpensesComponent } from '@/react/expenses/expenses';
 
-export default function ExpensesPage() {
-  return <Expenses />;
+export default function Page() {
+  return <ExpensesComponent />;
 }
