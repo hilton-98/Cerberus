@@ -5,11 +5,12 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "format": "npm run format:prettier && npm run format:style",
+    "format": "npm run lint:fix && npm run format:style",
     "format:check": "prettier --check .",
     "format:prettier": "prettier --write .",
     "format:style": "stylelint '**/*.{css,scss}' --fix",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "start": "next start",
     "test": "echo \"This is a placeholder for the test script\""
   },
@@ -35,6 +36,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.30.0",
     "eslint-plugin-prettier": "^5.2.1",
     "postcss": "^8.4.38",
     "prettier": "^3.3.3",

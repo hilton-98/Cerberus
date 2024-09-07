@@ -1,6 +1,6 @@
-import { Server } from './server';
-
 import { Service } from 'typedi';
+
+import { Server } from './server';
 
 @Service()
 export class UserService {

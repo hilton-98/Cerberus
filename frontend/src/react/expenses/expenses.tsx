@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from './expenses.module.scss';
+
 import { Container } from '@/ts/lib/typedi/container';
 import { ExpenseService } from '@/ts/server/expenseService';
+
+import styles from './expenses.module.scss';
 
 const css = {
   container: styles['container'],

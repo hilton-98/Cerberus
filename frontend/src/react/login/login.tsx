@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import styles from './login.module.scss';
 import { Button, Stack } from '@chakra-ui/react';
-import { LoginInputComponent } from './loginInput/loginInput';
+import { useState } from 'react';
 
 import welcomeBackgroundImage from '@/assets/images/welcome-background.jpg';
+
+import styles from './login.module.scss';
+import { LoginInputComponent } from './loginInput/loginInput';
 
 const css = {
   container: styles['container'],

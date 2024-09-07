@@ -1,12 +1,33 @@
 {
-  "parser": "@typescript-eslint/parser",
   "extends": [
     "eslint:recommended",
+    "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
-    "next/core-web-vitals"
+    "plugin:react/recommended"
   ],
-  "plugins": ["@typescript-eslint", "react", "jsx-a11y", "prettier"]
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import", "jsx-a11y", "prettier", "react"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",    // Node.js built-in modules (e.g., fs, path)
+          "external",   // External modules (e.g., react, lodash)
+          "internal",   // Internal modules (e.g., @/components)
+          "parent",     // Parent imports (e.g., ../file)
+          "sibling",    // Sibling imports (e.g., ./file)
+          "index"       // Index imports (e.g., ./)
+        ],
+        "newlines-between": "always", // Ensure new lines between groups
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "react/react-in-jsx-scope": "off"
+  }
 }

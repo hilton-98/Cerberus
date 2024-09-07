@@ -1,5 +1,6 @@
 module.exports = {
   extends: ['stylelint-config-standard-scss', 'stylelint-prettier/recommended'],
+  ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
   plugins: ['stylelint-order', './customPlugins/stylelint-alphabetize-selectors'],
   rules: {
     'no-empty-source': null, // Disables the no-empty-source rule
@@ -8,5 +9,4 @@ module.exports = {
     'plugin/alphabetize-selectors': [true, { fix: true }],
     'prettier/prettier': true,
   },
-  ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
 };
