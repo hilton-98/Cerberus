@@ -8,5 +8,5 @@
     "plugin:prettier/recommended",
     "next/core-web-vitals"
   ],
-  "plugins": ["@typescript-eslint", "react", "jsx-ally", "prettier"]
+  "plugins": ["@typescript-eslint", "react", "jsx-a11y", "prettier"]
 }

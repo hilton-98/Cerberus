@@ -1,8 +1,7 @@
 const phrases = {
-   welcome: 'Welcome to ExpenseHound',
+  welcome: 'Welcome to ExpenseHound',
 } as const;
 
 export function HomeComponent() {
-   return <main>{phrases.welcome}</main>;
- }
- 
+  return <main>{phrases.welcome}</main>;
+}

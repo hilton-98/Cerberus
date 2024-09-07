@@ -1,7 +1,7 @@
 import styles from './profile.module.scss';
 
 const css = {
-   container: styles['container'],
+  container: styles['container'],
 } as const;
 
 const phrases = {
