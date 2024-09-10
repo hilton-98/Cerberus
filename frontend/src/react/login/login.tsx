@@ -4,6 +4,8 @@ import { Button, Stack } from '@chakra-ui/react';
 import { useState } from 'react';
 
 import welcomeBackgroundImage from '@/assets/images/welcome-background.jpg';
+import { Container } from '@/ts/lib/typedi/container';
+import { UserService } from '@/ts/server/userService';
 
 import styles from './login.module.scss';
 import { LoginInputComponent } from './loginInput/loginInput';
@@ -18,7 +20,7 @@ const css = {
 
 const phrases = {
   passwordPlaceholder: 'Password',
-  submitButton: 'Submit',
+  signUpButton: 'Sign Up',
   title: 'Login',
   usernamePlaceholder: 'Username',
   welcome: 'Welcome to ExpenseHound',
@@ -28,8 +30,9 @@ export function LoginComponent() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSubmit = () => {
-    console.log({
+  const onSignUp = () => {
+    const userService = Container.get(UserService);
+    userService.createUser({
       username,
       password,
     });
@@ -50,7 +53,7 @@ export function LoginComponent() {
               placeholder={phrases.passwordPlaceholder}
             />
           </Stack>
-          <Button onClick={onSubmit}>{phrases.submitButton}</Button>
+          <Button onClick={onSignUp}>{phrases.signUpButton}</Button>
         </div>
         <div
           className={css.infoGroup}
