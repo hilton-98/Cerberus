@@ -23,7 +23,8 @@ import org.springframework.test.context.ActiveProfiles;
 class UserServiceTest {
 
 	private final String TEST_ID_DNE = "some-rando-id";
-	private final String TEST_NAME = "Tanner Pearson";
+	private final String TEST_NAME = "Tanner Hilton";
+	private final String TEST_PASSWORD = "Sports";
 
 	@Autowired
 	private UserRepository userRepository;
@@ -38,7 +39,7 @@ class UserServiceTest {
 	@Test
 	void testGetUserById_Success() {
 
-		User user = new User(TEST_NAME);
+		User user = new User(TEST_NAME, TEST_PASSWORD);
 
 		User saveUserResult = userService.saveUser(user);
 		assertEquals(user, saveUserResult);
@@ -56,7 +57,7 @@ class UserServiceTest {
 
 	@Test
 	void testDeleteUser_Success() {
-		User user = new User(TEST_NAME);
+		User user = new User(TEST_NAME, TEST_PASSWORD);
 
 		User saveUserResult = userService.saveUser(user);
 		assertEquals(user, saveUserResult);

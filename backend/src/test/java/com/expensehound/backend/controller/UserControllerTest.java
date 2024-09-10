@@ -29,6 +29,7 @@ class UserControllerTest {
 
 	private final String TEST_ID_DNE = "a-new-hope";
 	private final String TEST_NAME = "Darth Vader";
+	private final String TEST_PASSWORD = "Luke1sMyS0n";
 
 	private final String CREATE_USER_URL = "/user/createUser";
 	private final String GET_USER_BY_ID_URL = "/user/{id}";
@@ -74,7 +75,7 @@ class UserControllerTest {
 	@Test
 	void testGetUserById_UserExists() throws Exception {
 
-		User user = new User(TEST_NAME);
+		User user = new User(TEST_NAME, TEST_PASSWORD);
 
 		String userJson = objectMapper.writeValueAsString(user);
 

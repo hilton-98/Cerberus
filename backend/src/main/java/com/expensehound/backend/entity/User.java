@@ -19,11 +19,15 @@ public class User {
 	@Column(name = "username")
 	private String username;
 
+	@Column(name = "password")
+	private String password;
+
 	public User() {
 	}
 
-	public User(String username) {
+	public User(String username, String password) {
 		this.username = username;
+		this.password = password;
 	}
 
 	public String getId() {
@@ -38,8 +42,16 @@ public class User {
 		this.username = username;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public String toString() {
-		return "User{" + "id=" + id + ", name='" + username + '\'' + '}';
+		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 }
