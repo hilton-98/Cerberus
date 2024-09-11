@@ -1,3 +1,4 @@
+import { HttpStatusCode } from 'axios';
 import { Service } from 'typedi';
 
 import { User } from '@/model/user.interface';
@@ -17,6 +18,11 @@ export class UserService {
 
   async createUser(user: User) {
     const response = await this.server.post(`${this.serviceUrl}/createUser`, user);
-    return response.data;
+    if (response.status === HttpStatusCode.Ok) {
+      return response.data;
+    } else {
+      // TODO: error handling for bad responses
+      return response.data;
+    }
   }
 }

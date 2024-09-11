@@ -39,32 +39,32 @@ class UserServiceTest {
 	// @Test
 	// void testGetUserById_Success() {
 
-	// 	User user = new User(TEST_NAME, TEST_PASSWORD);
+	// User user = new User(TEST_NAME, TEST_PASSWORD);
 
-	// 	User saveUserResult = userService.saveUser(user);
-	// 	assertEquals(user, saveUserResult);
-	// 	User getUserResult = userService.getUserById(user.getId()).get();
-	// 	assertEquals(user, getUserResult);
+	// User saveUserResult = userService.saveUser(user);
+	// assertEquals(user, saveUserResult);
+	// User getUserResult = userService.getUserById(user.getId()).get();
+	// assertEquals(user, getUserResult);
 	// }
 
 	// @Test
 	// void testGetUserById_Failure() {
 
-	// 	Optional<User> optionalUser = userService.getUserById(TEST_ID_DNE);
-	// 	assertEquals(true, optionalUser.isEmpty());
-	// 	assertThrows(NoSuchElementException.class, () -> optionalUser.get());
+	// Optional<User> optionalUser = userService.getUserById(TEST_ID_DNE);
+	// assertEquals(true, optionalUser.isEmpty());
+	// assertThrows(NoSuchElementException.class, () -> optionalUser.get());
 	// }
 
 	// @Test
 	// void testDeleteUser_Success() {
-	// 	User user = new User(TEST_NAME, TEST_PASSWORD);
+	// User user = new User(TEST_NAME, TEST_PASSWORD);
 
-	// 	User saveUserResult = userService.saveUser(user);
-	// 	assertEquals(user, saveUserResult);
+	// User saveUserResult = userService.saveUser(user);
+	// assertEquals(user, saveUserResult);
 
-	// 	userService.deleteUser(user.getId());
-	// 	Optional<User> optionalUser = userService.getUserById(user.getId());
-	// 	assertTrue(optionalUser.isEmpty());
-	// 	assertThrows(NoSuchElementException.class, () -> optionalUser.get());
+	// userService.deleteUser(user.getId());
+	// Optional<User> optionalUser = userService.getUserById(user.getId());
+	// assertTrue(optionalUser.isEmpty());
+	// assertThrows(NoSuchElementException.class, () -> optionalUser.get());
 	// }
 }

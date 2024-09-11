@@ -7,12 +7,10 @@ import { LoginView } from './loginView.interface';
 
 @Service()
 export class LoginPresenter {
-  private readonly passwordLength = 8;
+  private readonly passwordLength = 5;
   private readonly usernameLength = 8;
 
   private readonly phrases = {
-    invalidPasswordError: 'Invalid password',
-    invalidUsernameError: 'Invalid username',
     passwordLengthError: `Password must be at least ${this.passwordLength} characters`,
     usernameLengthError: `Username must be at least ${this.usernameLength} characters`,
   } as const;
@@ -29,16 +27,6 @@ export class LoginPresenter {
     return username.length >= this.usernameLength;
   }
 
-  private isValidPassword(password: string): boolean {
-    // TODO: what makes a valid password?
-    return password.length > this.passwordLength;
-  }
-
-  private isValidUsername(username: string): boolean {
-    // TODO: what makes a valid username?
-    return username.length > this.usernameLength;
-  }
-
   public setView(view: LoginView) {
     this.view = view;
   }
@@ -49,14 +37,8 @@ export class LoginPresenter {
     } else if (!this.isUsernameLengthOk(user.username)) {
       this.view.showError(this.phrases.usernameLengthError);
       return;
-    } else if (!this.isValidUsername(user.username)) {
-      this.view.showError(this.phrases.invalidUsernameError);
-      return;
     } else if (!this.isPasswordLengthOk(user.password)) {
       this.view.showError(this.phrases.passwordLengthError);
-      return;
-    } else if (!this.isValidPassword(user.password)) {
-      this.view.showError(this.phrases.invalidPasswordError);
       return;
     }
 
