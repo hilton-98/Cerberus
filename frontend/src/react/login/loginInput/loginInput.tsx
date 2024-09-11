@@ -4,6 +4,7 @@ import { ChangeEvent } from 'react';
 interface Props {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
+  type?: string;
 }
 
 const styles = {
@@ -11,14 +12,18 @@ const styles = {
   white: 'white',
 } as const;
 
-export function LoginInputComponent({ onChange, placeholder }: Props) {
+const maxLength = 12; // characters
+
+export function LoginInputComponent({ onChange, placeholder, type = 'text' }: Props) {
   return (
     <Input
       backgroundColor={styles.white}
       color={styles.black}
       focusBorderColor={styles.black}
+      maxLength={maxLength}
       onChange={onChange}
       placeholder={placeholder}
+      type={type}
     />
   );
 }

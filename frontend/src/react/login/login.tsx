@@ -1,11 +1,11 @@
 'use client';
 
 import { Button, Stack } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import welcomeBackgroundImage from '@/assets/images/welcome-background.jpg';
 import { Container } from '@/ts/lib/typedi/container';
-import { UserService } from '@/ts/server/userService';
+import { LoginPresenter } from '@/ts/presenter/login/loginPresenter';
 
 import styles from './login.module.scss';
 import { LoginInputComponent } from './loginInput/loginInput';
@@ -18,6 +18,12 @@ const css = {
   title: styles['title'],
 } as const;
 
+const imageStyles = {
+  infoBackground: {
+    backgroundImage: `url(${welcomeBackgroundImage.src})`,
+  },
+} as const;
+
 const phrases = {
   passwordPlaceholder: 'Password',
   signUpButton: 'Sign Up',
@@ -27,16 +33,31 @@ const phrases = {
 } as const;
 
 export function LoginComponent() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const loginPresenter = Container.get(LoginPresenter);
+
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const clearError = () => {
+    setErrorMessage(undefined);
+  };
 
   const onSignUp = () => {
-    const userService = Container.get(UserService);
-    userService.createUser({
+    loginPresenter.signUp({
       username,
       password,
     });
   };
+
+  useEffect(() => {
+    loginPresenter.setView({
+      clearError: () => clearError(),
+      showError: (errorMessage) => setErrorMessage(errorMessage),
+    });
+  }, [loginPresenter]);
+
+  const ErrorMessage = () => (errorMessage ? <span>{errorMessage}</span> : <></>);
 
   return (
     <div className={css.container}>
@@ -51,15 +72,15 @@ export function LoginComponent() {
             <LoginInputComponent
               onChange={(e) => setPassword(e.target.value)}
               placeholder={phrases.passwordPlaceholder}
+              type={'password'}
             />
           </Stack>
+          <ErrorMessage />
           <Button onClick={onSignUp}>{phrases.signUpButton}</Button>
         </div>
         <div
           className={css.infoGroup}
-          style={{
-            backgroundImage: `url(${welcomeBackgroundImage.src})`,
-          }}
+          style={imageStyles.infoBackground}
         >
           {phrases.welcome}
         </div>

@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 import { Container } from '@/ts/lib/typedi/container';
-import { RouteManager } from '@/ts/route/routeManager';
-import { RouteType } from '@/ts/route/routeType';
+import { RouteManager } from '@/ts/presenter/route/routeManager';
+import { RouteType } from '@/ts/presenter/route/routeType';
 
 import styles from './header.module.scss';
 

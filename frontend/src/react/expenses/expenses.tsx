@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { Container } from '@/ts/lib/typedi/container';
-import { ExpenseService } from '@/ts/server/expenseService';
+import { ExpenseService } from '@/ts/service/expenseService';
 
 import styles from './expenses.module.scss';
 
