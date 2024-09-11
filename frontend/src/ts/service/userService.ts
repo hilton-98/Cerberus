@@ -1,6 +1,6 @@
 import { Service } from 'typedi';
 
-import { User } from '../model/user.interface';
+import { User } from '@/model/user.interface';
 
 import { Server } from './server';
 
@@ -11,10 +11,12 @@ export class UserService {
   constructor(private readonly server: Server) {}
 
   async getUsers() {
-    return this.server.get(`${this.serviceUrl}/getUsers`);
+    const response = await this.server.get(`${this.serviceUrl}/getUsers`);
+    return response.data;
   }
 
   async createUser(user: User) {
-    return this.server.post(`${this.serviceUrl}/createUser`, user);
+    const response = await this.server.post(`${this.serviceUrl}/createUser`, user);
+    return response.data;
   }
 }
