@@ -1,12 +1,7 @@
 package com.expensehound.backend.controller;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.util.Base64;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,37 +54,19 @@ public class UserController {
 
 	@PostMapping(path = controllerUrl
 			+ "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<IResponse> createUser(@RequestBody UserRequest request) throws NoSuchAlgorithmException {
-
-		String username = request.getUsername();
-		String password = request.getPassword();
-
-		SecureRandom random = new SecureRandom();
-		byte[] saltBytes = new byte[16];
-		random.nextBytes(saltBytes);
-
-		MessageDigest md = MessageDigest.getInstance("SHA-512");
-		md.update(saltBytes);
-
-		byte[] hashBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
-
-		String salt = Base64.getEncoder().encodeToString(saltBytes);
-		String hash = Base64.getEncoder().encodeToString(hashBytes);
-
-		User user = new User(username, salt, hash);
-
-		User newUser = userService.saveUser(user);
-		return ResponseEntity.ok(new UserResponse(newUser));
+	public ResponseEntity<IResponse> createUser(@RequestBody UserRequest request) {
+		try {
+			User user = userService.createUser(request.getUsername(), request.getPassword());
+			return ResponseEntity.ok(new UserResponse(user));
+		} catch (NoSuchAlgorithmException e) {
+			return ResponseEntity.badRequest().body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error creating user"));
+		}
 	}
 
 	@GetMapping(path = controllerUrl
 			+ "/validateUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<IResponse> validateUser(@RequestBody UserRequest request) throws NoSuchAlgorithmException {
-
-		String username = request.getUsername();
-		String password = request.getPassword();
-
-		Optional<User> userOption = userService.getUser(username);
+	public ResponseEntity<IResponse> validateUser(@RequestBody UserRequest request) {
+		Optional<User> userOption = userService.getUser(request.getUsername());
 
 		if (userOption.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -98,21 +75,16 @@ public class UserController {
 
 		User user = userOption.get();
 
-		String salt = user.getSalt();
-		byte[] saltBytes = Base64.getDecoder().decode(salt);
+		try {
+			if (!userService.validateUser(user, request.getPassword())) {
+				return ResponseEntity.badRequest()
+						.body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Incorrect password"));
+			}
 
-		MessageDigest md = MessageDigest.getInstance("SHA-512");
-		md.update(saltBytes);
-
-		byte[] hashBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
-
-		String hash = Base64.getEncoder().encodeToString(hashBytes);
-
-		if (!Objects.equals(hash, user.getHash())) {
-			return ResponseEntity.badRequest().body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Incorrect password"));
+			return ResponseEntity.ok(new SuccessResponse("Valid user"));
+		} catch (NoSuchAlgorithmException e) {
+			return ResponseEntity.badRequest().body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error validating user"));
 		}
-
-		return ResponseEntity.ok(new SuccessResponse("Valid user"));
 	}
 
 	@PutMapping(path = controllerUrl
