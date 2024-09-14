@@ -69,7 +69,7 @@ public class UserService {
 		return userRepository.save(user);
 	}
 
-	public void deleteUser(String id) {
-		userRepository.deleteById(id);
+	public void deleteUser(String username) {
+		userRepository.deleteById(username);
 	}
 }

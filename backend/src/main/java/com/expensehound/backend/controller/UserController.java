@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expensehound.backend.entity.User;
+import com.expensehound.backend.model.request.UserRequest;
 import com.expensehound.backend.model.response.IResponse;
-import com.expensehound.backend.model.response.error.ErrorResponse;
+import com.expensehound.backend.model.response.error.BadRequestResponse;
 import com.expensehound.backend.model.response.error.NotFoundResponse;
 import com.expensehound.backend.model.response.success.SuccessResponse;
-import com.expensehound.backend.model.response.user.UserRequest;
 import com.expensehound.backend.model.response.user.UserResponse;
 import com.expensehound.backend.model.response.user.UsersResponse;
 import com.expensehound.backend.service.UserService;
@@ -59,7 +59,7 @@ public class UserController {
 			User user = userService.createUser(request.getUsername(), request.getPassword());
 			return ResponseEntity.ok(new UserResponse(user));
 		} catch (NoSuchAlgorithmException e) {
-			return ResponseEntity.badRequest().body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error creating user"));
+			return ResponseEntity.badRequest().body(new BadRequestResponse("Error creating user"));
 		}
 	}
 
@@ -70,7 +70,7 @@ public class UserController {
 
 		if (userOption.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body(new ErrorResponse(HttpStatus.NOT_FOUND, "Username not found"));
+					.body(new NotFoundResponse("Username not found"));
 		}
 
 		User user = userOption.get();
@@ -78,12 +78,12 @@ public class UserController {
 		try {
 			if (!userService.validateUser(user, request.getPassword())) {
 				return ResponseEntity.badRequest()
-						.body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Incorrect password"));
+						.body(new BadRequestResponse("Incorrect password"));
 			}
 
 			return ResponseEntity.ok(new SuccessResponse("Valid user"));
 		} catch (NoSuchAlgorithmException e) {
-			return ResponseEntity.badRequest().body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error validating user"));
+			return ResponseEntity.badRequest().body(new BadRequestResponse("Error validating user"));
 		}
 	}
 
@@ -104,9 +104,9 @@ public class UserController {
 		return ResponseEntity.ok(new UserResponse(updatedUser));
 	}
 
-	@DeleteMapping(path = controllerUrl + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<IResponse> deleteUser(@PathVariable String id) {
-		userService.deleteUser(id);
+	@DeleteMapping(path = controllerUrl + "/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<IResponse> deleteUser(@PathVariable String username) {
+		userService.deleteUser(username);
 		return ResponseEntity.ok(new SuccessResponse("User successfully deleted"));
 	}
 }

@@ -1,4 +1,4 @@
-package com.expensehound.backend.model.response.user;
+package com.expensehound.backend.model.request;
 
 public class UserRequest {
 
