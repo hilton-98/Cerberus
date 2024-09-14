@@ -75,23 +75,24 @@ class UserControllerTest {
 	// @Test
 	// void testGetUserById_UserExists() throws Exception {
 
-	// 	User user = new User(TEST_NAME, TEST_PASSWORD);
+	// User user = new User(TEST_NAME, TEST_PASSWORD);
 
-	// 	String userJson = objectMapper.writeValueAsString(user);
+	// String userJson = objectMapper.writeValueAsString(user);
 
-	// 	mockMvc.perform(post(CREATE_USER_URL).contentType(MediaType.APPLICATION_JSON).content(userJson))
-	// 			.andExpect(status().isOk()).andExpect(jsonPath(userJsonKeys.get(UserKey.NAME)).value(TEST_NAME));
+	// mockMvc.perform(post(CREATE_USER_URL).contentType(MediaType.APPLICATION_JSON).content(userJson))
+	// .andExpect(status().isOk()).andExpect(jsonPath(userJsonKeys.get(UserKey.NAME)).value(TEST_NAME));
 
-	// 	User savedUser = userRepository.findAll().get(0);
-	// 	String id = savedUser.getId();
+	// User savedUser = userRepository.findAll().get(0);
+	// String id = savedUser.getId();
 
-	// 	mockMvc.perform(get(GET_USER_BY_ID_URL, id)).andExpect(status().isOk())
-	// 			.andExpect(jsonPath(userJsonKeys.get(UserKey.ID)).value(id))
-	// 			.andExpect(jsonPath(userJsonKeys.get(UserKey.NAME)).value(TEST_NAME));
+	// mockMvc.perform(get(GET_USER_BY_ID_URL, id)).andExpect(status().isOk())
+	// .andExpect(jsonPath(userJsonKeys.get(UserKey.ID)).value(id))
+	// .andExpect(jsonPath(userJsonKeys.get(UserKey.NAME)).value(TEST_NAME));
 	// }
 
 	// @Test
 	// void testGetUserById_UserDoesNotExist() throws Exception {
-	// 	mockMvc.perform(get(GET_USER_BY_ID_URL, TEST_ID_DNE)).andExpect(status().isNotFound());
+	// mockMvc.perform(get(GET_USER_BY_ID_URL,
+	// TEST_ID_DNE)).andExpect(status().isNotFound());
 	// }
 }

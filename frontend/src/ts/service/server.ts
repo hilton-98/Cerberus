@@ -8,12 +8,10 @@ export class Server {
   public readonly baseUrl: string = process.env.NEXT_PUBLIC_SERVER_URL ?? '';
 
   public async get(url: string) {
-    const response = await axios.get(url);
-    return response.data;
+    return await axios.get(url);
   }
 
   public async post(url: string, request: Request) {
-    const response = await axios.post(url, request);
-    return response.data;
+    return await axios.post(url, request);
   }
 }

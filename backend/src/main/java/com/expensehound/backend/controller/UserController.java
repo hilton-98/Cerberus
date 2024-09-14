@@ -45,8 +45,7 @@ public class UserController {
 		Optional<User> user = userService.getUser(username);
 
 		if (user.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body(new NotFoundResponse("User not found"));
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new NotFoundResponse("User not found"));
 		}
 
 		return ResponseEntity.ok(new UserResponse(user.get()));
@@ -93,8 +92,7 @@ public class UserController {
 		Optional<User> user = userService.getUser(username);
 
 		if (user.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body(new NotFoundResponse("User not found"));
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new NotFoundResponse("User not found"));
 		}
 
 		User updatedUser = user.get();

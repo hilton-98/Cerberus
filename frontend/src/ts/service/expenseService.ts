@@ -9,6 +9,7 @@ export class ExpenseService {
   constructor(private readonly server: Server) {}
 
   async getExpenses() {
-    return this.server.get(`${this.serviceUrl}/expenses`);
+    const response = await this.server.get(`${this.serviceUrl}/expenses`);
+    return response.data;
   }
 }
