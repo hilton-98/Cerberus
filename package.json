@@ -6,6 +6,7 @@
     "format": "concurrently \"npm run format:frontend\" \"npm run format:backend\"",
     "format:backend": "cd backend && ./mvnw spotless:apply",
     "format:frontend": "npm run format --prefix frontend",
+    "proto:backend": "protoc --java_out=./backend/src/main/java/ ./protobuf/*.proto",
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "start:backend": "cd backend && ./mvnw spring-boot:run",
     "start:frontend": "npm --prefix frontend run dev",

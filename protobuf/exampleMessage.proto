@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package protobuf.example;
+
+message ExampleRequest {
+  string query = 1;
+  int32 page_number = 2;
+}
+
+message ExampleResponse {
+  repeated string results = 1;
+  int32 total_pages = 2;
+}
