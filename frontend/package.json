@@ -11,6 +11,7 @@
     "format:style": "stylelint '**/*.{css,scss}' --fix",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "proto": "npx glob-cli \"../proto/*.proto\" -- protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/ts/proto --ts_proto_opt=esModuleInterop=true,outputServices=false --proto_path=../proto",
     "start": "next start",
     "test": "echo \"This is a placeholder for the test script\""
   },
@@ -44,6 +45,7 @@
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-order": "^6.0.4",
     "stylelint-prettier": "^5.0.0",
+    "ts-proto": "^2.2.0",
     "typescript": "^5"
   }
 }

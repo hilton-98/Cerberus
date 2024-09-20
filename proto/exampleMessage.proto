@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package protobuf.example;
+package proto.example;
 
 message ExampleRequest {
   string query = 1;
