@@ -11,7 +11,9 @@
     "format:style": "stylelint '**/*.{css,scss}' --fix",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "proto": "npm run proto:clean && npm run proto:build",
     "proto:build": "mkdir -p ./src/ts/proto && find ../proto -name '*.proto' | xargs protoc --plugin=protoc-gen-ts_proto=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src/ts/proto/ --ts_proto_opt=esModuleInterop=true,outputServices=false --proto_path=../proto",
+    "proto:clean": "rm -r ./src/ts/proto",
     "start": "next start",
     "test": "echo \"This is a placeholder for the test script\""
   },
