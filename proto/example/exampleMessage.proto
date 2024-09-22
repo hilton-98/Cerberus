@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package proto.example;
 
+option java_multiple_files = true;
+
 message ExampleRequest {
   string query = 1;
   int32 page_number = 2;

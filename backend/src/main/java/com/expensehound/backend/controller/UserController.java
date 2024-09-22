@@ -21,10 +21,13 @@ import com.expensehound.backend.model.response.IResponse;
 import com.expensehound.backend.model.response.error.ErrorResponse;
 import com.expensehound.backend.model.response.error.NotFoundResponse;
 import com.expensehound.backend.model.response.success.SuccessResponse;
-import com.expensehound.backend.model.response.user.UserRequest;
 import com.expensehound.backend.model.response.user.UserResponse;
 import com.expensehound.backend.model.response.user.UsersResponse;
 import com.expensehound.backend.service.UserService;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.util.JsonFormat;
+
+import proto.user.UserRequest;
 
 @RestController
 public class UserController {
@@ -51,12 +54,23 @@ public class UserController {
 		return ResponseEntity.ok(new UserResponse(user.get()));
 	}
 
+	private UserRequest getUserRequestFromBody(String requestBody) throws InvalidProtocolBufferException {
+		UserRequest.Builder userRequestBuilder = UserRequest.newBuilder();
+		JsonFormat.parser().ignoringUnknownFields().merge(requestBody, userRequestBuilder);
+		return userRequestBuilder.build();
+	}
+
 	@PostMapping(path = controllerUrl
 			+ "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<IResponse> createUser(@RequestBody UserRequest request) {
+	public ResponseEntity<IResponse> createUser(@RequestBody String requestBody) {
 		try {
-			User user = userService.createUser(request.getUsername(), request.getPassword());
+			UserRequest request = getUserRequestFromBody(requestBody);
+			User user = userService.createUser(request.getUsername(),
+					request.getPassword());
 			return ResponseEntity.ok(new UserResponse(user));
+		} catch (InvalidProtocolBufferException e) {
+			return ResponseEntity.badRequest()
+					.body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error parsing request body"));
 		} catch (NoSuchAlgorithmException e) {
 			return ResponseEntity.badRequest().body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error creating user"));
 		}
@@ -64,23 +78,28 @@ public class UserController {
 
 	@GetMapping(path = controllerUrl
 			+ "/validateUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<IResponse> validateUser(@RequestBody UserRequest request) {
-		Optional<User> userOption = userService.getUser(request.getUsername());
-
-		if (userOption.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body(new ErrorResponse(HttpStatus.NOT_FOUND, "Username not found"));
-		}
-
-		User user = userOption.get();
-
+	public ResponseEntity<IResponse> validateUser(@RequestBody String requestBody) {
 		try {
+			UserRequest request = getUserRequestFromBody(requestBody);
+
+			Optional<User> userOption = userService.getUser(request.getUsername());
+
+			if (userOption.isEmpty()) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND)
+						.body(new ErrorResponse(HttpStatus.NOT_FOUND, "Username not found"));
+			}
+
+			User user = userOption.get();
+
 			if (!userService.validateUser(user, request.getPassword())) {
 				return ResponseEntity.badRequest()
 						.body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Incorrect password"));
 			}
 
 			return ResponseEntity.ok(new SuccessResponse("Valid user"));
+		} catch (InvalidProtocolBufferException e) {
+			return ResponseEntity.badRequest()
+					.body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error parsing request body"));
 		} catch (NoSuchAlgorithmException e) {
 			return ResponseEntity.badRequest().body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error validating user"));
 		}
