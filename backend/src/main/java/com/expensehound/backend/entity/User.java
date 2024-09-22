@@ -19,7 +19,8 @@ public class User {
 	@Column(name = "hash")
 	private String hash;
 
-	public User() {}
+	public User() {
+	}
 
 	public User(String username, String salt, String hash) {
 		this.username = username;

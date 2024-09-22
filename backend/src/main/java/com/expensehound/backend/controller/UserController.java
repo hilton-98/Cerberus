@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.expensehound.backend.controller.proto.UserProtoTranslator;
 import com.expensehound.backend.entity.User;
 import com.expensehound.backend.model.response.IResponse;
 import com.expensehound.backend.model.response.error.ErrorResponse;
@@ -25,7 +26,6 @@ import com.expensehound.backend.model.response.user.UserResponse;
 import com.expensehound.backend.model.response.user.UsersResponse;
 import com.expensehound.backend.service.UserService;
 import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.util.JsonFormat;
 
 import proto.user.UserRequest;
 
@@ -36,6 +36,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private UserProtoTranslator protoTranslator;
 
 	@GetMapping(path = controllerUrl + "/users", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<IResponse> getUsers() {
@@ -54,19 +57,12 @@ public class UserController {
 		return ResponseEntity.ok(new UserResponse(user.get()));
 	}
 
-	private UserRequest getUserRequestFromBody(String requestBody) throws InvalidProtocolBufferException {
-		UserRequest.Builder userRequestBuilder = UserRequest.newBuilder();
-		JsonFormat.parser().ignoringUnknownFields().merge(requestBody, userRequestBuilder);
-		return userRequestBuilder.build();
-	}
-
 	@PostMapping(path = controllerUrl
 			+ "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<IResponse> createUser(@RequestBody String requestBody) {
 		try {
-			UserRequest request = getUserRequestFromBody(requestBody);
-			User user = userService.createUser(request.getUsername(),
-					request.getPassword());
+			UserRequest request = protoTranslator.getUserRequest(requestBody);
+			User user = userService.createUser(request.getUsername(), request.getPassword());
 			return ResponseEntity.ok(new UserResponse(user));
 		} catch (InvalidProtocolBufferException e) {
 			return ResponseEntity.badRequest()
@@ -80,8 +76,7 @@ public class UserController {
 			+ "/validateUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<IResponse> validateUser(@RequestBody String requestBody) {
 		try {
-			UserRequest request = getUserRequestFromBody(requestBody);
-
+			UserRequest request = protoTranslator.getUserRequest(requestBody);
 			Optional<User> userOption = userService.getUser(request.getUsername());
 
 			if (userOption.isEmpty()) {
