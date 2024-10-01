@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "clean": "concurrently \"bash ./clean.sh\" \"npm run clean:backend\" \"npm run clean:frontend\"",
+    "clean:backend": "npm run proto:clean:backend",
+    "clean:frontend": "npm run clean --prefix frontend",
     "format": "concurrently \"npm run format:backend\" \"npm run format:frontend\"",
     "format:backend": "cd backend && ./mvnw spotless:apply",
     "format:frontend": "npm run format --prefix frontend",
