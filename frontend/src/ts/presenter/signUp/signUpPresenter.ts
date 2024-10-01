@@ -42,6 +42,12 @@ export class SignUpPresenter {
       return;
     }
 
-    const _response = await this.userService.createUser(user);
+    const response = await this.userService.createUser(user);
+
+    if (response.isSuccess()) {
+      this.view.startSession();
+    } else {
+      // TODO: error handling
+    }
   }
 }

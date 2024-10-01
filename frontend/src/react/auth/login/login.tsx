@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Stack } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { LinkComponent } from '@/react/core/link/link';
 import { Container } from '@/ts/lib/typedi/container';
@@ -27,11 +27,11 @@ const phrases = {
 } as const;
 
 export function LoginComponent() {
-  const loginPresenter = Container.get(LoginPresenter);
-
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+
+  const loginPresenter = useMemo(() => Container.get(LoginPresenter), []);
 
   const clearError = () => {
     setErrorMessage(undefined);
