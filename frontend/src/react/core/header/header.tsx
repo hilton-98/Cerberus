@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 import { Container } from '@/ts/lib/typedi/container';
+import { RouteType } from '@/ts/presenter/route/route.enum';
 import { RouteManager } from '@/ts/presenter/route/routeManager';
-import { RouteType } from '@/ts/presenter/route/routeType';
 
 import styles from './header.module.scss';
 
@@ -46,7 +46,7 @@ const links: LinkInfo[] = [
   },
 ] as const;
 
-export function Header() {
+export function HeaderComponent() {
   return (
     <div className={css.container}>
       <div className={css.links}>

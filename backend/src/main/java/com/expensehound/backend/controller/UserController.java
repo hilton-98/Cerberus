@@ -72,7 +72,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping(path = controllerUrl
+	@PostMapping(path = controllerUrl
 			+ "/validateUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<IResponse> validateUser(@RequestBody String requestBody) {
 		try {

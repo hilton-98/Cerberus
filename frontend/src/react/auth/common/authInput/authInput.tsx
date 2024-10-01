@@ -14,7 +14,7 @@ const styles = {
 
 const maxLength = 12; // characters
 
-export function LoginInputComponent({ onChange, placeholder, type = 'text' }: Props) {
+export function AuthInputComponent({ onChange, placeholder, type = 'text' }: Props) {
   return (
     <Input
       backgroundColor={styles.white}

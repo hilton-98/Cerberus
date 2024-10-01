@@ -2,7 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { Header } from '@/react/core/header/header';
+import { HeaderComponent } from '@/react/core/header/header';
 
 const css = {
   app: 'app',
@@ -30,7 +30,7 @@ export default function Layout({
       <body className={inter.className}>
         <ChakraProvider>
           <div className={css.app}>
-            <Header />
+            <HeaderComponent />
             {children}
           </div>
         </ChakraProvider>

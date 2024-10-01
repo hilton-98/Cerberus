@@ -3,4 +3,5 @@ export enum RouteType {
   Home,
   Login,
   Profile,
+  SignUp,
 }
