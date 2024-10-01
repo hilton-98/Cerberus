@@ -8,6 +8,6 @@ export class SuccessResponse extends Response {
   }
 
   public static isSuccessResponse(response: Response): response is SuccessResponse {
-   return response.isSuccess();
+    return response.isSuccess();
   }
 }

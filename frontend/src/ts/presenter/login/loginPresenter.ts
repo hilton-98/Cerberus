@@ -1,10 +1,10 @@
 import { Service } from 'typedi';
 
 import { User } from '@/model/user.interface';
+import { ErrorResponse } from '@/ts/service/response/errorResponse';
 import { UserService } from '@/ts/service/user/userService';
 
 import { LoginView } from './loginView.interface';
-import { ErrorResponse } from '@/ts/service/response/errorResponse';
 
 @Service()
 export class LoginPresenter {
@@ -24,6 +24,7 @@ export class LoginPresenter {
     const response = await this.userService.validateUser(user);
     if (response.isSuccess()) {
       // login
+      console.log('login success!');
     } else {
       this.view.showError((response as ErrorResponse).getMessage());
     }

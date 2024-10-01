@@ -6,9 +6,9 @@ export class ErrorResponse extends Response {
   constructor(private readonly message: string) {
     super(ErrorResponse.success);
   }
-  
+
   public static isErrorResponse(response: Response): response is ErrorResponse {
-   return !response.isSuccess();
+    return !response.isSuccess();
   }
 
   public getMessage(): string {

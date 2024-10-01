@@ -8,8 +8,8 @@ import { Container } from '@/ts/lib/typedi/container';
 import { LoginPresenter } from '@/ts/presenter/login/loginPresenter';
 import { RouteType } from '@/ts/presenter/route/route.enum';
 
-import { AuthWrapperComponent } from '../common/authWrapper/authWrapper';
 import { AuthInputComponent } from '../common/authInput/authInput';
+import { AuthWrapperComponent } from '../common/authWrapper/authWrapper';
 
 import styles from './login.module.scss';
 

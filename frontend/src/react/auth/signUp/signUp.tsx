@@ -1,18 +1,17 @@
 'use client';
 
 import { Button, Stack } from '@chakra-ui/react';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+import { LinkComponent } from '@/react/core/link/link';
 import { Container } from '@/ts/lib/typedi/container';
-import { LoginPresenter } from '@/ts/presenter/login/loginPresenter';
+import { RouteType } from '@/ts/presenter/route/route.enum';
+import { SignUpPresenter } from '@/ts/presenter/signUp/signUpPresenter';
 
-import { AuthWrapperComponent } from '../common/authWrapper/authWrapper';
 import { AuthInputComponent } from '../common/authInput/authInput';
+import { AuthWrapperComponent } from '../common/authWrapper/authWrapper';
 
 import styles from './signUp.module.scss';
-import { RouteType } from '@/ts/presenter/route/route.enum';
-import { LinkComponent } from '@/react/core/link/link';
 
 const css = {
   title: styles['title'],
@@ -28,7 +27,7 @@ const phrases = {
 } as const;
 
 export function SignUpComponent() {
-  const signUpPresenter = Container.get(LoginPresenter);
+  const signUpPresenter = Container.get(SignUpPresenter);
 
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [username, setUsername] = useState<string>('');
@@ -39,7 +38,7 @@ export function SignUpComponent() {
   };
 
   const onSignUp = () => {
-    signUpPresenter.login({
+    signUpPresenter.signUp({
       username,
       password,
     });
