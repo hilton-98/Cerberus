@@ -1,6 +1,5 @@
 'use client';
 
-import { Link as ChakraLink } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import { Container } from '@/ts/lib/typedi/container';
@@ -18,10 +17,11 @@ export function LinkComponent({ routeType, text }: Props) {
   const routeManager = Container.get(RouteManager);
 
   return (
-    <NextLink href={routeManager.getRoute(routeType)}>
-      <ChakraLink>
-        <span className={styles.text}>{text}</span>
-      </ChakraLink>
+    <NextLink
+      href={routeManager.getRoute(routeType)}
+      passHref
+    >
+      <span className={styles.text}>{text}</span>
     </NextLink>
   );
 }

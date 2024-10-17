@@ -17,7 +17,7 @@ export function ExpensesComponent() {
   const loadExpenses: () => Promise<void> = async () => {
     try {
       const expenseService = Container.get(ExpenseService);
-      setExpenses(await expenseService.getExpenses());
+      setExpenses(await expenseService.getExpenses() ?? []);
     } catch (e) {
       console.log(e);
     }
