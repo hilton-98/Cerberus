@@ -34,3 +34,5 @@ build/
 
 ### Proto ###
 src/main/java/proto/
+
+.env

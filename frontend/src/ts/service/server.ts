@@ -8,10 +8,18 @@ export class Server {
   public readonly baseUrl: string = process.env.NEXT_PUBLIC_SERVER_URL ?? '';
 
   public async get(url: string) {
-    return await axios.get(url);
+    try {
+      return await axios.get(url, {
+        withCredentials: true,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   public async post(url: string, request: Request) {
-    return await axios.post(url, request);
+    return await axios.post(url, request, {
+      withCredentials: true,
+    });
   }
 }

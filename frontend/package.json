@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "clean": "bash clean.sh",
     "dev": "next dev",
     "format": "npm run lint:fix && npm run format:style",
     "format:check": "prettier --check .",
@@ -24,6 +25,8 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.7.2",
     "eslint-plugin-jsx-a11y": "^6.10.0",
+    "jose": "^5.9.4",
+    "jsonwebtoken": "^9.0.2",
     "next": "^14.2.12",
     "react": "^18",
     "react-dom": "^18",

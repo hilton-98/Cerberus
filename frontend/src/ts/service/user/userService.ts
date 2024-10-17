@@ -27,7 +27,7 @@ export class UserService extends Service {
 
   async getUsers() {
     const response = await this.server.get(`${this.serviceUrl}/getUsers`);
-    return response.data;
+    return response?.data;
   }
 
   async validateUser(user: User): Promise<Response> {

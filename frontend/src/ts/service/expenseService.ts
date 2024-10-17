@@ -10,6 +10,6 @@ export class ExpenseService {
 
   async getExpenses() {
     const response = await this.server.get(`${this.serviceUrl}/expenses`);
-    return response.data;
+    return response?.data;
   }
 }
