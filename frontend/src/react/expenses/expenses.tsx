@@ -7,11 +7,6 @@ import { ExpenseService } from '@/ts/service/expenseService';
 
 import styles from './expenses.module.scss';
 
-const css = {
-  container: styles['container'],
-  header: styles['header'],
-} as const;
-
 const phrases = {
   header: 'Expenses',
 } as const;
@@ -33,8 +28,8 @@ export function ExpensesComponent() {
   }, []);
 
   return (
-    <div className={css.container}>
-      <h1 className={css.header}>{phrases.header}</h1>
+    <div className={styles.container}>
+      <h1 className={styles.header}>{phrases.header}</h1>
       <ul>
         {expenses.map((expense, index) => (
           <li key={index}>{expense}</li>

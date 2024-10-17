@@ -16,12 +16,6 @@ interface LinkInfo {
   route: string;
 }
 
-const css = {
-  container: styles['container'],
-  link: styles['link'],
-  links: styles['links'],
-} as const;
-
 const phrases = {
   homePageLabel: 'Expense Hound',
   loginPageLabel: 'Login',
@@ -35,24 +29,24 @@ const links: LinkInfo[] = [
     route: routeManager.getRoute(RouteType.Home),
   },
   {
-    id: 1,
-    label: phrases.loginPageLabel,
-    route: routeManager.getRoute(RouteType.Login),
-  },
-  {
     id: 2,
     label: phrases.expensesLabel,
     route: routeManager.getRoute(RouteType.Expenses),
+  },
+  {
+    id: 1,
+    label: phrases.loginPageLabel,
+    route: routeManager.getRoute(RouteType.Login),
   },
 ] as const;
 
 export function HeaderComponent() {
   return (
-    <div className={css.container}>
-      <div className={css.links}>
+    <div className={styles.container}>
+      <div className={styles.links}>
         {links.map((link) => (
           <Link
-            className={css.link}
+            className={styles.link}
             href={link.route}
             key={link.id}
           >
@@ -62,7 +56,7 @@ export function HeaderComponent() {
       </div>
       <div>
         <Link
-          className={css.link}
+          className={styles.link}
           href={routeManager.getRoute(RouteType.Profile)}
         >
           <FontAwesomeIcon

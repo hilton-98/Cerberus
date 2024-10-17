@@ -1,4 +1,4 @@
-.auth-grid {
+.authGrid {
   border-radius: 16px;
   display: grid;
   flex-grow: 1;
@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-.auth-group {
+.authGroup {
   align-items: center;
   aspect-ratio: 1 / 1; /* Makes the height and width equal */
   background-color: gray;
@@ -28,7 +28,7 @@
   padding: 32px;
 }
 
-.info-group {
+.infoGroup {
   align-items: center;
   aspect-ratio: 1 / 1; /* Makes the height and width equal */
   background-color: black;

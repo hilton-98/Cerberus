@@ -13,10 +13,6 @@ import { AuthWrapperComponent } from '../common/authWrapper/authWrapper';
 
 import styles from './login.module.scss';
 
-const css = {
-  title: styles['title'],
-} as const;
-
 const phrases = {
   passwordPlaceholder: 'Password',
   loginButton: 'Login',
@@ -51,11 +47,11 @@ export function LoginComponent() {
     });
   }, [loginPresenter]);
 
-  const ErrorMessage = () => (errorMessage ? <span>{errorMessage}</span> : <></>);
+  const ErrorMessage = () => (errorMessage ? <span>{errorMessage}</span> : null);
 
   return (
     <AuthWrapperComponent>
-      <div className={css.title}>{phrases.title}</div>
+      <div className={styles.title}>{phrases.title}</div>
       <Stack>
         <AuthInputComponent
           onChange={(e) => setUsername(e.target.value)}

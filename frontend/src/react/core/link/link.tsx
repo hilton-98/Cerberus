@@ -9,10 +9,6 @@ import { RouteManager } from '@/ts/presenter/route/routeManager';
 
 import styles from './link.module.scss';
 
-const css = {
-  text: styles['text'],
-} as const;
-
 interface Props {
   routeType: RouteType;
   text: string;
@@ -24,7 +20,7 @@ export function LinkComponent({ routeType, text }: Props) {
   return (
     <NextLink href={routeManager.getRoute(routeType)}>
       <ChakraLink>
-        <span className={css.text}>{text}</span>
+        <span className={styles.text}>{text}</span>
       </ChakraLink>
     </NextLink>
   );
