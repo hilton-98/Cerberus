@@ -37,10 +37,6 @@ export function SignUpComponent() {
     setErrorMessage(undefined);
   };
 
-  const startSession = () => {
-    redirectManager.redirectExpenses(router);
-  };
-
   const onSignUp = () => {
     signUpPresenter.signUp({
       username,
@@ -48,11 +44,15 @@ export function SignUpComponent() {
     });
   };
 
+  const startSession = () => {
+    redirectManager.redirectHome(router);
+  };
+
   useEffect(() => {
     signUpPresenter.setView({
       clearError: () => clearError(),
-      startSession: () => startSession(),
       showError: (errorMessage) => setErrorMessage(errorMessage),
+      startSession: () => startSession(),
     });
   });
 
