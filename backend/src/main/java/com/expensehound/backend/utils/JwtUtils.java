@@ -2,10 +2,12 @@ package com.expensehound.backend.utils;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.annotation.PostConstruct;
 import io.jsonwebtoken.Claims;
 
 import javax.crypto.spec.SecretKeySpec;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -14,8 +16,16 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-	private String jwtSecret = "some-secret-key";
+	@Autowired
+	private EnvLoader envLoader;
+
+	private String jwtSecret;
 	private final long jwtExpirationMs = 86400000; // 24 hours
+
+	@PostConstruct
+	public void init() {
+		jwtSecret = envLoader.getSecretKey();
+	}
 
 	// Generate the signing key
 	private Key getSigningKey() {

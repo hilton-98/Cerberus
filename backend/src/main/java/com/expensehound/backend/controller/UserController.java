@@ -71,8 +71,8 @@ public class UserController {
 
 			String token = jwtUtils.generateJwtToken(request.getUsername());
 
-			ResponseCookie cookie = ResponseCookie.from("access_token", token).httpOnly(true).path("/").sameSite("None")
-					.maxAge(24 * 60 * 60) // 1 day
+			ResponseCookie cookie = ResponseCookie.from("access_token", token).httpOnly(true).path("/").sameSite("Lax")
+					.secure(false).maxAge(24 * 60 * 60) // 1 day
 					.build();
 
 			return ResponseEntity.ok().header("Set-Cookie", cookie.toString()).body(new UserResponse(user));
