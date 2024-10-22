@@ -19,7 +19,7 @@
     "proto:clean:backend": "rm -rf ./backend/src/main/java/proto",
     "proto:clean:frontend": "npm --prefix frontend run proto:clean",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
-    "start:backend": "cd backend && ./mvnw spring-boot:run",
+    "start:backend": "cd backend && bash ./run.sh",
     "start:frontend": "npm --prefix frontend run dev",
     "test": "concurrently \"npm run test:backend\" \"npm run test:frontend\"",
     "test:backend": "cd backend && mvn test",
