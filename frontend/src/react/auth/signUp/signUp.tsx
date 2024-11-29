@@ -15,10 +15,6 @@ import { AuthWrapperComponent } from '../common/authWrapper/authWrapper';
 
 import styles from './signUp.module.scss';
 
-const css = {
-  title: styles['title'],
-} as const;
-
 const phrases = {
   loginCta: 'Already have an account? ',
   loginCtaLink: 'Log in',
@@ -41,10 +37,6 @@ export function SignUpComponent() {
     setErrorMessage(undefined);
   };
 
-  const startSession = () => {
-    redirectManager.redirectExpenses(router);
-  };
-
   const onSignUp = () => {
     signUpPresenter.signUp({
       username,
@@ -52,19 +44,23 @@ export function SignUpComponent() {
     });
   };
 
+  const startSession = () => {
+    redirectManager.redirectHome(router);
+  };
+
   useEffect(() => {
     signUpPresenter.setView({
       clearError: () => clearError(),
-      startSession: () => startSession(),
       showError: (errorMessage) => setErrorMessage(errorMessage),
+      startSession: () => startSession(),
     });
   });
 
-  const ErrorMessage = () => (errorMessage ? <span>{errorMessage}</span> : <></>);
+  const ErrorMessage = () => (errorMessage ? <span>{errorMessage}</span> : null);
 
   return (
     <AuthWrapperComponent>
-      <div className={css.title}>{phrases.title}</div>
+      <div className={styles.title}>{phrases.title}</div>
       <Stack>
         <AuthInputComponent
           onChange={(e) => setUsername(e.target.value)}

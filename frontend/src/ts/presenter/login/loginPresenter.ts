@@ -24,7 +24,7 @@ export class LoginPresenter {
     const response = await this.userService.validateUser(user);
     if (response.isSuccess()) {
       // login
-      console.log('login success!');
+      this.view.startSession();
     } else {
       this.view.showError((response as ErrorResponse).getMessage());
     }

@@ -15,4 +15,8 @@ export class RedirectManager {
   public redirectExpenses(router: AppRouterInstance) {
     this.redirect(router, this.routeManager.getRoute(RouteType.Expenses));
   }
+
+  public redirectHome(router: AppRouterInstance) {
+    this.redirect(router, this.routeManager.getRoute(RouteType.Home));
+  }
 }

@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ import com.expensehound.backend.model.response.success.SuccessResponse;
 import com.expensehound.backend.model.response.user.UserResponse;
 import com.expensehound.backend.model.response.user.UsersResponse;
 import com.expensehound.backend.service.UserService;
+import com.expensehound.backend.utils.JwtUtils;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import proto.user.UserRequest;
@@ -33,6 +35,9 @@ import proto.user.UserRequest;
 public class UserController {
 
 	private final String controllerUrl = "/user";
+
+	@Autowired
+	private JwtUtils jwtUtils;
 
 	@Autowired
 	private UserService userService;
@@ -63,7 +68,14 @@ public class UserController {
 		try {
 			UserRequest request = protoTranslator.getUserRequest(requestBody);
 			User user = userService.createUser(request.getUsername(), request.getPassword());
-			return ResponseEntity.ok(new UserResponse(user));
+
+			String token = jwtUtils.generateJwtToken(request.getUsername());
+
+			ResponseCookie cookie = ResponseCookie.from("access_token", token).httpOnly(true).path("/").sameSite("Lax")
+					.secure(false).maxAge(24 * 60 * 60) // 1 day
+					.build();
+
+			return ResponseEntity.ok().header("Set-Cookie", cookie.toString()).body(new UserResponse(user));
 		} catch (InvalidProtocolBufferException e) {
 			return ResponseEntity.badRequest()
 					.body(new ErrorResponse(HttpStatus.BAD_REQUEST, "Error parsing request body"));

@@ -8,5 +8,7 @@ module.exports = {
     'order/properties-alphabetical-order': true,
     'plugin/alphabetize-selectors': [true, { fix: true }],
     'prettier/prettier': true,
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "selector-id-pattern": "^[a-z][a-zA-Z0-9]+$",
   },
 };

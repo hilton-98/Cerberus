@@ -1,9 +1,11 @@
 'use client';
 
 import { Button, Stack } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 
 import { LinkComponent } from '@/react/core/link/link';
+import { RedirectManager } from '@/react/utils/redirectManager';
 import { Container } from '@/ts/lib/typedi/container';
 import { LoginPresenter } from '@/ts/presenter/login/loginPresenter';
 import { RouteType } from '@/ts/presenter/route/route.enum';
@@ -12,10 +14,6 @@ import { AuthInputComponent } from '../common/authInput/authInput';
 import { AuthWrapperComponent } from '../common/authWrapper/authWrapper';
 
 import styles from './login.module.scss';
-
-const css = {
-  title: styles['title'],
-} as const;
 
 const phrases = {
   passwordPlaceholder: 'Password',
@@ -27,11 +25,13 @@ const phrases = {
 } as const;
 
 export function LoginComponent() {
+  const router = useRouter();
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const loginPresenter = useMemo(() => Container.get(LoginPresenter), []);
+  const redirectManager = useMemo(() => Container.get(RedirectManager), []);
 
   const clearError = () => {
     setErrorMessage(undefined);
@@ -44,18 +44,23 @@ export function LoginComponent() {
     });
   };
 
+  const startSession = () => {
+    redirectManager.redirectHome(router);
+  };
+
   useEffect(() => {
     loginPresenter.setView({
       clearError: () => clearError(),
       showError: (errorMessage) => setErrorMessage(errorMessage),
+      startSession: () => startSession(),
     });
-  }, [loginPresenter]);
+  });
 
-  const ErrorMessage = () => (errorMessage ? <span>{errorMessage}</span> : <></>);
+  const ErrorMessage = () => (errorMessage ? <span>{errorMessage}</span> : null);
 
   return (
     <AuthWrapperComponent>
-      <div className={css.title}>{phrases.title}</div>
+      <div className={styles.title}>{phrases.title}</div>
       <Stack>
         <AuthInputComponent
           onChange={(e) => setUsername(e.target.value)}
